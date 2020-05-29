@@ -1,0 +1,17 @@
+{% extends 'posts/base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+  {{ block.super }}
+  <div class="container registration-form">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form layout='inline' %}
+      <input type="submit" value="Sign Up">
+    </form>
+    <div class="border-top-pt-3">
+      <small class="text-muted">
+        Have an Account? <a class="ml-2" href="#"> Login</a>
+      </small>
+    </div>
+  </div>
+{% endblock %}
