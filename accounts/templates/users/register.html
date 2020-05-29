@@ -1,4 +1,4 @@
-{% extends 'posts/base.html'%}
+{% extends 'users/base.html'%}
 {% load bootstrap4 %}
 {% block content %}
   {{ block.super }}
@@ -10,7 +10,7 @@
     </form>
     <div class="border-top-pt-3">
       <small class="text-muted">
-        Have an Account? <a class="ml-2" href="#"> Login</a>
+        Have an Account? <a class="ml-2" href="{% url 'login'%}"> Login</a>
       </small>
     </div>
   </div>
