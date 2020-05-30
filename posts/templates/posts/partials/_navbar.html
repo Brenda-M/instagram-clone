@@ -8,9 +8,10 @@
     </div>
     <div class="nav-col">
       <i class="fas fa-search"></i>
-      
-        <input type="text" placeholder="Search">
-   
+      <form method="GET" action="{% url 'search_results' %}">
+        {% csrf_token %}
+        <input type="text" placeholder="Find user" name="q"  id="id_q" value="{{ request.GET.q }}">
+      </form>
     </div>
     <div class="nav-col">
       <ul class="nav-links">
@@ -47,5 +48,4 @@
       </ul>
     </div>
   </div>
- 
 </nav>

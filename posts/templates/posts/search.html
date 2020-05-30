@@ -1,0 +1,12 @@
+{% extends 'posts/base.html'%}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    {% for user in users %}
+      {{ user.username }}
+    {% endfor %}
+    
+
+{% endblock %}
