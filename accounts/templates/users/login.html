@@ -1,16 +1,37 @@
 {% extends 'users/base.html'%}
 {% load bootstrap4 %}
+{% load static %}
 {% block content %}
-<div class="container registration-form">
-  <form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form layout='inline' %}
-    <input type="submit" value="Sign Up">
-  </form>
-  <div class="border-top-pt-3">
-    <small class="text-muted">
-      Don't Have an Account? <a class="ml-2" href="{% url 'register'%}"> Log In</a>
-    </small>
+<div id="wrapper">
+  <div class="container">
+    <div class="phone-app-demo">
+    </div>
+    <div class="form-data">
+      <form action="" method="POST">
+        <div class="logo">
+          <img src="{% static 'img/1200px-Instagram_logo.png'%}" alt="logo text">
+        </div>
+        {% csrf_token %}
+        {% bootstrap_form form layout='inline' %}
+        <button type="submit" class="form-btn"> Log In</button>
+        <span class="log-option">Or</span>
+        <a href="#" class="facebook-login">
+          <i class="fab fa-facebook"></i> Log in with Facebook
+        </a>
+        <a href="#" class="password-reset">Forgot password?</a>
+      </form>
+      <div class="sign-up">
+          Don't Have an Account? <a class="ml-2" href="{% url 'register'%}"> Sign up</a>
+      </div>
+      <div class="get-app">
+        <span>Get the app</span>
+        <div class="badges">
+          <img src="{% static 'img/playstore.png'%}" alt="logo text">
+          <img src="{% static 'img/appstore.png'%}" alt="logo text">
+        </div>
+      </div>
+    </div>
   </div>
+  {{block.super}}
 </div>
 {% endblock %}
