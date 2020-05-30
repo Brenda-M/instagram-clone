@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
   ListView, 
@@ -24,6 +26,7 @@ class ImageListView(LoginRequiredMixin, ListView):
 
 class ImageDetailView(DetailView):
   model = Image
+
 
 class ImageCreateView(LoginRequiredMixin, CreateView):
   model = Image
@@ -58,3 +61,9 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     if self.request.user == post.user:
       return True
     return False
+
+def LikeView(request, pk):
+  img_post = get_object_or_404(Image, id=request.POST.get('image_id'))
+  img_post.likes.add(request.user)
+  return HttpResponseRedirect(reverse('image-post-detail', args=[str(pk)]))
+  
