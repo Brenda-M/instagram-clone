@@ -11,5 +11,9 @@
     <div class="card-footer">{{ object.caption }}
     </div>
   </div>
+  {% if object.user == user %}
+    <a class="btn btn-secondary btn-sm" href="{% url 'image-update' object.id %}">Update</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'image-delete' object.id %}">Delete</a>
+  {% endif %}
 </div>
 {% endblock %}
