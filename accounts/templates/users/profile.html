@@ -1,0 +1,15 @@
+{% extends 'posts/base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="media">
+      <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle" width="125" height="125">
+      <div class="media-bodt">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

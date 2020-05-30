@@ -132,4 +132,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = ''
 
+#path for media uploads
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #full path where file uploads will be stored on file system
+
 LOGIN_REDIRECT_URL = 'index' 
+LOGIN_URL = 'login'

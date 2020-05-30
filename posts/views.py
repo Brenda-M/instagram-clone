@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Image
 from django.http import HttpResponse
 
@@ -15,7 +15,7 @@ class ImageListView(ListView):
   model = Image  #tells the listview which model to query inorder to create the listview
   template_name = 'posts/index.html' #naming convention is <app>/<model>_<viewtype>.html
   context_object_name = 'images'
-  ordering = ['-created_at']
+
 
 class ImageDetailView(DetailView):
   model = Image
@@ -23,8 +23,22 @@ class ImageDetailView(DetailView):
 class ImageCreateView(LoginRequiredMixin, CreateView):
   model = Image
   fields = ['image', 'caption']
-  # success_url=('')
 
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+  
+class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+  model = Image
+  fields = ['image', 'caption']
+
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+  
+  def test_func(self):
+    post = self.get_object()
+    if self.request.user == post.user:
+      return True
+    return False
