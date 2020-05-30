@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Image
 from django.http import HttpResponse
 
@@ -15,3 +15,7 @@ class ImageListView(ListView):
   template_name = 'posts/index.html' #naming convention is <app>/<model>_<viewtype>.html
   context_object_name = 'images'
   ordering = ['created_at']
+
+class ImageDetailView(DetailView):
+  model = Image
+  
