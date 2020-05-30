@@ -1,0 +1,15 @@
+{% extends 'posts/base.html'%}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+ 
+  <div class="card">
+    <div class="card-header">{{object.user}}</div>
+    <div class="card-body"><img src="{{ object.image.url }}" alt="" width=250 height = 350></div>
+    <div class="card-footer">{{ object.caption }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,21 @@
 {% extends 'posts/base.html'%}
+{% load static %}
+{% load bootstrap4 %}
 
 {% block content %}
-  <h1>Homepage</h1>
+<div class="container">
+  {% for img in images %}
+    <div class="card" style="width: 18rem;">
+      <a href="{% url 'image-post-detail' img.id %}"><img class="card-img-top" src="{{ img.image.url }}" alt=""></a>
+      <div class="card-body">
+        <h5 class="card-title">{{img.user}}</h5>
+        <p class="card-text">{{ img.caption }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+
+
 {% endblock %}
