@@ -21,11 +21,6 @@ body{
 }
 
 
-.navbar .nav-list-item {
-  /* margin-left: 30px;
-  padding: 0 2px; */
-}
-
 .nav-link {
   color: rgba(0, 0, 0, 0.8);
   font-size: 18px;
@@ -58,9 +53,71 @@ body{
   padding-top: .5rem;
 }
 
+#feed > .container{
+  /* background-color: red; */
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding:0;
+}
 
+ #feed > .container .card {
+  /* background-color: blue; */
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  width: 500px;
+  min-height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
 
+.card-header{
+  padding: 0;
+}
 
-.card{
-  margin-bottom: 15px;
+.profile-img{
+  display: inline-block;
+  border-radius: 50%;
+  padding: .3rem;
+}
+
+.profile-info{
+  display: inline-block;
+}
+
+.name{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.content img{
+  width: 100%;
+  height: 20rem;
+}
+
+.photo-actions a i{
+  margin-right: 8px;
+  
+}
+
+.no-img-text{
+  font-size: 25px;
+  margin-top: 15rem;
+}
+
+.first-prof-col{
+  display: flex;
+  justify-content: space-around;
+}
+
+.new-container{
+ 
+  max-width: 35rem;
+  margin-top: 3rem;
+}
+
+.new-img-cont .card{
+  background-color:#FFFFFF;
+  margin-top: .8rem;
+
 }

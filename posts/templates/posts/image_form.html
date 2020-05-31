@@ -1,20 +1,23 @@
-{% extends 'users/base.html'%}
+{% extends 'posts/base.html'%}
 {% load bootstrap4 %}
 {% load static %}
 {% block content %}
-<div class="wrapper">
-  <div class="container">
+<div class="container new-img-cont">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 card">
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
-          <legend class="border-bottom mb-4">New Post</legend>
+          <legend class="text-center border-bottom mb-4">New Post</legend>
           {% bootstrap_form form layout='inline' %}
-        </fieldset>  
+        </fieldset>
         <div class="form-group">
           <button type="submit" class="btn btn-primary"> Post</button>
-        </div>   
+        </div>
       </form>
-    </div>
-  </div>
+    </div> 
+    <div class="col-md-3"></div>
 </div>
+
 {% endblock %}

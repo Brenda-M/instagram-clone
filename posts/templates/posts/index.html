@@ -3,17 +3,56 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container">
-  {% for img in images %}
-    <div class="card" style="width: 18rem;">
-      <a href="{% url 'image-post-detail' img.id %}"><img class="card-img-top" src="{{ img.image.url }}" alt=""></a>
-      <div class="card-body">
-        <h5 class="card-title">{{img.user}}</h5>
-        <p class="card-text">{{ img.caption }}</p>
+<main id="feed">
+  <div class="container">
+    {% for img in images %}
+    <div class="card">
+      <div class="card-header">
+        <div class="profile-img">
+          <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle" height="50" width="50">
+        </div>
+        <div class="profile-info">
+          <div class="name"><a href="{% url 'user_profile'  username=img.user.username %}">{{img.user}}</a></div>
+        </div>
+        <div class="content">
+          <a href="{% url 'image-post-detail' img.id %}"><img class="card-img-top" src="{{ img.image.url }}" alt=""></a>
+        </div>
+        <div class="card-footer">
+          <div class="photo-actions">
+            <span class="photo-action">
+              <a href="#"><i class="far fa-heart"></i></a>
+            </span>
+            <span class="photo-action">
+              <a href="#"><i class="far fa-comment"></i></a>
+            </span>
+            <span>
+              <a href="#"><i class="far fa-paper-plane"></i></a>
+            </span>
+          </div>
+          <div class="liked-by">
+            <span class="photo-likes">45 likes</span>
+          </div>
+          {% if img.caption %}
+          <div class="image-caption">
+            <p class="card-text">{{ img.caption }}</p>
+          </div>
+          {% endif %}
+        </div>
       </div>
     </div>
-  {% endfor %}
-</div>
+    {% endfor %}
+<!--     
+      <p class="text-center no-img-text">You are not following anybody yet. <br>Search for users above to begin viewing their photos and stories</p> -->
+  
+
+  </div>
+
+</main>
+
+
+
+
+
 
 
 

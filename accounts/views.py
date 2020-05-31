@@ -31,7 +31,8 @@ class ProfileDetailView(DetailView):
     if username is None:
       raise Http404
     return get_object_or_404(User, username__iexact=username)
-  
+
+   
   def get_context_data(self, *args, **kwargs):
     context = super(ProfileDetailView, self).get_context_data(*args, **kwargs)
     user = context['user']

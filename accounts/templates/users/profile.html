@@ -2,18 +2,33 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <div>
-    <p>{% include 'users/follow_form.html' with username=user.username is_following=is_following %}</p>
-  </div>
 
-  <div class="container">
-    <div class="media">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
       <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle" width="125" height="125">
-      <div class="media-bodt">
+    </div>
+    <div class="col-md-8">
+      <div class="first-prof-col">
         <h2 class="account-heading">{{ user.username }}</h2>
-        <p class="text-secondary">{{ user.email }}</p>
+        <a href="{% url 'logout'%}" class="btn btn-sm btn">Logout</a>
+        <div>
+          <p>{% include 'users/follow_form.html' with username=user.username is_following=is_following %}</p>
+        </div>
+        <p>{{ user.profile.followers.count }} Followers</p>
+        <p>{{ user.is_following.count }} Following</p>
+      </div>
+      <div class="third-prof-col">
+        <p>{{ user.profile.bio }}</p>
       </div>
     </div>
   </div>
+  <hr>
+  {% for post in user.image_set.all  %}
+  <img src="{{ user.image }}" alt="" class="rounded-circle" width="125" height="125">
+  {% endfor %}
+</div>
+
+
 
 {% endblock %}

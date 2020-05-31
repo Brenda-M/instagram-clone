@@ -2,7 +2,7 @@
 <nav class="navbar">
   <div class="container">
     <div class="nav-col">
-      <a href="#">
+      <a href="{% url 'index'%}">
         <img src="{% static 'img/1200px-Instagram_logo.png'%}" />
       </a>
     </div>
@@ -41,8 +41,8 @@
           </a>
         </li>  
         <li class="nav-list-item">
-          <a href="#" class="nav-link">
-            <i class="far fa-user"></i>
+          <a href="{% url 'user_profile'  username=user.username %}" class="nav-link">
+            <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle" height="30" width="30">
           </a>
         </li>
       </ul>

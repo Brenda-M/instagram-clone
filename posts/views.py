@@ -20,7 +20,6 @@ class HomeView(View):
     user = request.user
     is_following_user_ids = [x.user.id for x in user.is_following.all()]
     qs = Image.objects.filter(user__id__in=is_following_user_ids)
-
     return render(request, 'posts/index.html', {'images':qs} )
 
 class ImageDetailView(LoginRequiredMixin, DetailView):
