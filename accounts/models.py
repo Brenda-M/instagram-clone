@@ -11,7 +11,7 @@ class ProfileManager(models.Manager):
     else:
       profile_.followers.add(user)
       is_following = True
-    return is_following
+    return profile_, is_following
 
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -20,6 +20,8 @@ class Profile(models.Model):
   followers = models.ManyToManyField(User,related_name='is_following', blank=True)
   created_at = models.DateField(auto_now_add=True)
   update_at = models.DateField(auto_now=True)
+
+  objects = ProfileManager()
 
   def __str__(self):
     return f'{self.user.username} Profile'

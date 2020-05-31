@@ -2,6 +2,9 @@
 {% load bootstrap4 %}
 
 {% block content %}
+  <div>
+    <p>{% include 'users/follow_form.html' with username=user.username is_following=is_following %}</p>
+  </div>
 
   <div class="container">
     <div class="media">
@@ -12,4 +15,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}

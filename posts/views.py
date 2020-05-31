@@ -9,25 +9,21 @@ from django.views.generic import (
   DetailView,
   CreateView,
   UpdateView,
-  DeleteView
+  DeleteView,
+  View
 )
-from .models import Image
+from .models import Image, Comment
 from django.http import HttpResponse
 
-def index(request):
-  context = {
-    'images': Image.objects.all()
-  }
-  return render(request, 'posts/index.html', context)
+class HomeView(View):
+  def get(self, request, *args, **kwargs):
+    user = request.user
+    is_following_user_ids = [x.user.id for x in user.is_following.all()]
+    qs = Image.objects.filter(user__id__in=is_following_user_ids)
 
-class ImageListView(LoginRequiredMixin, ListView):
-  model = Image  #tells the listview which model to query inorder to create the listview
-  template_name = 'posts/index.html' #naming convention is <app>/<model>_<viewtype>.html
-  context_object_name = 'images'
-  ordering = ['-id']
+    return render(request, 'posts/index.html', {'images':qs} )
 
-
-class ImageDetailView(DetailView):
+class ImageDetailView(LoginRequiredMixin, DetailView):
   model = Image
 
 
@@ -64,6 +60,20 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     if self.request.user == post.user:
       return True
     return False
+
+class CreateCommentView(LoginRequiredMixin, CreateView):
+  model = Comment
+  fields = ['text']
+
+  def form_valid(self, form):
+    img_post = get_object_or_404(Image, pk=self.kwargs.get('pk'))
+    form.instance.img_post = img_post
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+  def get_success_url(self, **kwargs):
+    pk = self.kwargs.get('pk')
+    return reverse('photo_blog-detail', args={pk: 'pk'})
 
 def LikeView(request, pk):
   img_post = get_object_or_404(Image, id=request.POST.get('image_id'))

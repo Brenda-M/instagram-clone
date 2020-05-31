@@ -20,5 +20,7 @@
     {% csrf_token %}
     <button type="submit" name="image_id" value="{{ object.id }}" class="btn btn-sm btn-primary">Like</button> <span>{{object.likes.count}} likes</span>
   </form>
+
+
 </div>
 {% endblock %}
