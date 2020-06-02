@@ -20,16 +20,21 @@ class Image(models.Model):
     return reverse('image-post-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
-  comment = models.CharField(max_length=100)
+  content = models.CharField(max_length=100)
   author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comment")
   img_post = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='post_comments')
   created_at = models.DateField(auto_now_add=True)
 
   class Meta:
-    ordering = ['created_at']
+    ordering = ['-created_at']
+  
+  @classmethod
+  def get_comments(cls, pk):
+    comments = cls.objects.filter(image=pk)
+    return comments
 
   def __str__(self):
-    return self.comment
+    return self.content
 
 
 

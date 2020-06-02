@@ -6,9 +6,8 @@ from .views import (
   ImageUpdateView, 
   ImageDeleteView, 
   LikeView,
-  CreateCommentView, 
-  HomeView
-
+  HomeView,
+  # CreateComment
 )
 from . import views
 
@@ -22,5 +21,4 @@ urlpatterns = [
   path('post/<int:pk>/delete', ImageDeleteView.as_view(), name='image-delete'),
   path('like/<int:pk>/',  LikeView, name="like_post"),
   path('find-user/', views.search, name='search_results'),
-  path('post/<int:pk>/comment/', CreateCommentView.as_view(), name='image-comment'),
 ]

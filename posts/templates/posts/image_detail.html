@@ -4,23 +4,44 @@
 
 {% block content %}
 <div class="container">
- 
-  <div class="card">
-    <div class="card-header">{{object.user}}</div>
-    <div class="card-body"><img src="{{ object.image.url }}" alt="" width=350 height = 300></div>
-    <div class="card-footer">{{ object.caption }}
+  <div class="detail card">
+    <div class="photo">
+      <img src="{{ object.image.url }}" alt="" >
     </div>
-  </div>
-  {% if object.user == user %}
-    <a class="btn btn-secondary btn-sm" href="{% url 'image-update' object.id %}">Update</a>
-    <a class="btn btn-danger btn-sm" href="{% url 'image-delete' object.id %}">Delete</a>
-  {% endif %}
+    <div class="name">
+      {{object.user}}
+      <span class="modify" style="float: right;">
+        {% if object.user == user %}
+        <a class="btn btn-secondary btn-sm" href="{% url 'image-update' object.id %}">Update</a>
+        <a class="btn btn-danger btn-sm" href="{% url 'image-delete' object.id %}">Delete</a>
+        {% endif %}
+      </span>
+      <hr>
+    </div>
+    <div class="comment">
+      {{ object.caption }}
+      <hr>
+      <h6><u>Comments</u></h6>
 
-  <form action="{% url 'like_post' object.pk %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" name="image_id" value="{{ object.id }}" class="btn btn-sm btn-primary">Like</button> <span>{{object.likes.count}} likes</span>
-  </form>
+      {{ comment.post_comments.all }}
 
-
+      {% for comment in object.post_comments.all %}
+        <p><b>{{comment.author }}:</b>  {{ comment.content }}</p>
+      {% endfor %}
+      <hr>
+    </div>
+    <div class="actions">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="image_id" value="{{ object.pk }}" class="btn btn-sm"><i class="far fa-heart"></i></button>
+        <span>{{object.likes.count}} {% if object.likes.count == 1 %} Like {% else %}Likes {% endif %}</span>
+      </form>
+      <p>Posted on: {{ object.created_at }}</p>
+      <hr>
+    </div>
+    <div class="form">
+      {% include 'posts/comment_form.html'%}
+    </div>
+  </div> 
 </div>
 {% endblock %}

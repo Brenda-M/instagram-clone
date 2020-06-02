@@ -1,7 +1,7 @@
 {% load bootstrap4 %}
-
-<form method="post" style="margin-top: 1.3em;">
-  {{ bootstrap4 form }}
+<form action="" method="POST">
+  {% csrf_token %}
   {% bootstrap_form form layout='inline' %}
-  <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+  {{ form.field.as_hidden }}
+  <button type='submit' class="btn btn-sm btn-outline-primary">Post</button>
 </form>

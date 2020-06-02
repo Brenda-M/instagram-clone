@@ -1,7 +1,14 @@
 from django import forms
 from .models import Comment
 
+
 class CommentForm(forms.ModelForm):
-  model = Comment
-  fields = ('comment-text')
+  class Meta:
+    model = Comment
+    fields = ['content']
+    widgets = {
+      'content': forms.TextInput(attrs={'placeholder': 'Add a comment'})
+    }
+  
+
   

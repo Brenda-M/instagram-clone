@@ -11,24 +11,32 @@
     <div class="col-md-8">
       <div class="first-prof-col">
         <h2 class="account-heading">{{ user.username }}</h2>
-        <a href="{% url 'logout'%}" class="btn btn-sm btn">Logout</a>
-        <div>
-          <p>{% include 'users/follow_form.html' with username=user.username is_following=is_following %}</p>
-        </div>
+        <p> {{ user.image_set.all.count}} Posts</p> 
         <p>{{ user.profile.followers.count }} Followers</p>
         <p>{{ user.is_following.count }} Following</p>
       </div>
-      <div class="third-prof-col">
-        <p>{{ user.profile.bio }}</p>
+      <div class="second-prof-col">
+          <p>{{ user.profile.bio }}</p>
+          <span style="float: right;">
+            {%  if request.user != user %}
+            <p>{% include 'users/follow_form.html' with username=user.username is_following=is_following %}</p>
+            {% endif %}
+            {%  if request.user == user %}
+            <a href="{% url 'logout'%}" class="btn btn-sm btn">Logout</a>
+            {% endif %}      
+          </span>  
       </div>
     </div>
   </div>
   <hr>
-  {% for post in user.image_set.all  %}
-  <img src="{{ user.image }}" alt="" class="rounded-circle" width="125" height="125">
-  {% endfor %}
+
+  <div class="all-images" style="margin: 10px 20px;">
+    {% for post in user.image_set.all  %}
+      <div class="my-images">
+        <a href="{% url 'image-post-detail' post.id %}"><img src="{{ post.image.url }}" alt="" class="" width="250"
+          height="250"></a>
+      </div> 
+    {% endfor %}
+  </div>
 </div>
-
-
-
 {% endblock %}
