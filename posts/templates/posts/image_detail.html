@@ -9,7 +9,7 @@
       <img src="{{ object.image.url }}" alt="" >
     </div>
     <div class="name">
-      {{object.user}}
+      <a href="{% url 'user_profile'  username=object.user %}"> {{object.user}}</a>
       <span class="modify" style="float: right;">
         {% if object.user == user %}
         <a class="btn btn-secondary btn-sm" href="{% url 'image-update' object.id %}">Update</a>
