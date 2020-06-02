@@ -1,4 +1,7 @@
 from django.db import models
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from django.contrib.auth.models import User
 
 class ProfileManager(models.Manager):
