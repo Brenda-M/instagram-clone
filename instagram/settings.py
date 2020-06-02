@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'cloudinary',
     'posts.apps.PostsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
