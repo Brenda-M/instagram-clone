@@ -17,7 +17,7 @@ from .forms import CommentForm
 from .models import Image, Comment
 from django.http import HttpResponse
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
   def get(self, request, *args, **kwargs):
     users = User.objects.all()
     user = request.user
@@ -29,7 +29,7 @@ class HomeView(View):
     }
     return render(request, 'posts/index.html', context )
 
-class ImageDetailView( LoginRequiredMixin,FormMixin, DetailView):
+class ImageDetailView(LoginRequiredMixin,FormMixin, DetailView):
   model = Image
   form_class = CommentForm
 
