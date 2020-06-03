@@ -41,10 +41,13 @@ ALLOWED_HOSTS = [
 #cloudinary configurations
 
 cloudinary.config( 
-  cloud_name='cloud_name', 
-  api_key='api_key', 
-  api_secret='api_secret',
+    cloud_name='brenda-cloud',
+    api_secret='4HY_j56GKYuE96lmISpFASjqX0s',
+    api_key='962834338842611',
 )
+
+
+
 
 # Application definition
 
