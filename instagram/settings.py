@@ -20,7 +20,6 @@ from decouple import config, Csv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -29,23 +28,17 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+MODE = config("MODE", default="dev")
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = [
-    '.localhost', 
-    '.herokuapp.com', 
-    '.127.0.0.1'
-]
+# cloudinary configurations
 
-#cloudinary configurations
-
-cloudinary.config( 
-  cloud_name = 'brenda-cloud', 
-  api_key = '962834338842611', 
-  api_secret = '4HY_j56GKYuE96lmISpFASjqX0s' 
+cloudinary.config(
+    cloud_name='brenda-cloud',
+    api_key='962834338842611',
+    api_secret='4HY_j56GKYuE96lmISpFASjqX0s'
 )
-
 
 
 # Application definition
@@ -98,22 +91,30 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': os.environ.get('DB_NAME', 'postgres'),
-        # 'USER': os.environ.get('DB_USER', 'postgres'),
-        # 'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
-        # 'HOST': os.environ.get('DB_HOST', 'localhost'),
-        # 'PORT': os.environ.get('DB_PORT', '5432'),
-        'TEST': {
-            'NAME': 'test_<app_name>'
-        },
-        'NAME': 'instaclone',
-        'USER': 'postgres',
-        'PASSWORD':'Bm19952810'
+if config('MODE') == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT'),
+        }
+
     }
-}
+# production
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation
@@ -166,12 +167,13 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-#path for media uploads
+# path for media uploads
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #full path where file uploads will be stored on file system
+# full path where file uploads will be stored on file system
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = 'index' 
+LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
 
