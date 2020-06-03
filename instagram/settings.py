@@ -11,28 +11,34 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hhupyuufc@f0d+kncmoua7c!%+%i0t%b^ft3ka(r35h$=kciuw'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = False
+
+ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
+
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'bootstrap4',
-    'cloudinary',
     'posts.apps.PostsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
@@ -51,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'instagram.urls'
@@ -79,12 +86,24 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instaclone',
-        'USER': 'postgres',
-        'PASSWORD': 'Bm19952810'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', 'postgres'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        'TEST': {
+            'NAME': 'test_<app_name>'
+        },
+        # 'USER': 'postgres',
+        # 'PASSWORD':'Bm19952810'
     }
 }
+
+
+ALLOWED_HOSTS = [
+    config('ALLOWED_HOSTS'),
+]
 
 
 # Password validation
@@ -131,7 +150,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT = ''
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 #path for media uploads
 
@@ -140,3 +163,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #full path where file uploads will 
 
 LOGIN_REDIRECT_URL = 'index' 
 LOGIN_URL = 'login'
+
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
