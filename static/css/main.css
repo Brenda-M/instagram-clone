@@ -163,6 +163,7 @@ body{
 .my-images{
   margin-right: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .second-prof-col{
