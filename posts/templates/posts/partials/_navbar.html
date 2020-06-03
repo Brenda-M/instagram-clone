@@ -41,8 +41,7 @@
           </a>
         </li>  
         <li class="nav-list-item">
-          <a href="{% url 'user_profile'  username=user.username %}" class="nav-link">
-            <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle" height="30" width="30">
+          <a href="{% url 'user_profile'  username=user.username %}" class="nav-link"><i class="fas fa-user"></i>
           </a>
         </li>
       </ul>
