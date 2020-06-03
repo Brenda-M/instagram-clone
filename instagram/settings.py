@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
 
@@ -93,9 +93,9 @@ DATABASES = {
         'TEST': {
             'NAME': 'test_<app_name>'
         },
-        'NAME': 'instaclone',
-        'USER': 'postgres',
-        'PASSWORD':'Bm19952810'
+        # 'NAME': 'instaclone',
+        # 'USER': 'postgres',
+        # 'PASSWORD':'Bm19952810'
     }
 }
 
