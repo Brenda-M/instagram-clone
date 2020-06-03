@@ -33,8 +33,6 @@ DEBUG = False
 ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
 
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
