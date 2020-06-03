@@ -6,6 +6,7 @@ class ImageTestClass(TestCase):
   def setUp(self):
     Image.objects.create(image='photo.jpg', caption="beautiful scenary")
   
-  def test_image
+  def test_get_absolute_url(self):
+  
 
   
