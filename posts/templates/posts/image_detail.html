@@ -7,7 +7,7 @@
 <div class="container">
   <div class="detail card">
     <div class="photo">
-      <img src="{{ object.image.url }}" alt="" >
+      <img src="{{ object.image.url }}" alt="">
 
     </div>
     <div class="name">
@@ -28,22 +28,25 @@
       {{ comment.post_comments.all }}
 
       {% for comment in object.post_comments.all %}
-        <p><b>{{comment.author }}:</b>  {{ comment.content }}</p>
+      <p><b>{{comment.author }}:</b> {{ comment.content }}</p>
       {% endfor %}
       <hr>
     </div>
     <div class="actions">
-      <form action="" method="POST">
+
+      <form action="{% url 'like_post' object.pk %}" method="POST">
         {% csrf_token %}
-        <button type="submit" name="image_id" value="{{ object.pk }}" class="btn btn-sm"><i class="far fa-heart"></i></button>
+        <button type="submit" name="image_id" value="{{ object.pk }}" class="btn btn-sm"><i
+            class="far fa-heart"></i></button>
         <span>{{object.likes.count}} {% if object.likes.count == 1 %} Like {% else %}Likes {% endif %}</span>
       </form>
+
       <p>Posted on: {{ object.created_at }}</p>
       <hr>
     </div>
     <div class="form">
       {% include 'posts/comment_form.html'%}
     </div>
-  </div> 
+  </div>
 </div>
 {% endblock %}

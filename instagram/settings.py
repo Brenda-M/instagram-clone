@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
@@ -41,8 +41,8 @@ ALLOWED_HOSTS = [
 #cloudinary configurations
 
 cloudinary.config( 
-    cloud_name='brenda-cloud',
-    api_secret='4HY_j56GKYuE96lmISpFASjqX0s',
+    cloud_name='cloud_name',
+    api_secret='api_secret',
     api_key='962834338842611',
 )
 
@@ -102,17 +102,17 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', 'postgres'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        # 'NAME': os.environ.get('DB_NAME', 'postgres'),
+        # 'USER': os.environ.get('DB_USER', 'postgres'),
+        # 'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
+        # 'HOST': os.environ.get('DB_HOST', 'localhost'),
+        # 'PORT': os.environ.get('DB_PORT', '5432'),
         'TEST': {
             'NAME': 'test_<app_name>'
         },
-        # 'NAME': 'instaclone',
-        # 'USER': 'postgres',
-        # 'PASSWORD':'Bm19952810'
+        'NAME': 'instaclone',
+        'USER': 'postgres',
+        'PASSWORD':'Bm19952810'
     }
 }
 
