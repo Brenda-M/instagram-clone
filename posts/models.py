@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 from django.urls import reverse
 
 
 class Image(models.Model):
   img_name = models.CharField(max_length=100, blank=True)
-  image = models.ImageField(upload_to='img_posts/')
+  image = CloudinaryField('image')
   caption = models.CharField(max_length=100, blank=True)
   likes = models.ManyToManyField(User, related_name='post_likes')
   user  = models.ForeignKey(User, on_delete=models.CASCADE)

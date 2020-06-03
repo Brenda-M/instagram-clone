@@ -1,3 +1,9 @@
 from django.test import TestCase
+from .models import Image
 
-# Create your tests here.
+class ImageTestClass(TestCase):
+
+  def setUp(self):
+    Image.objects.create(image='UltraUhd ', caption="beautiful scenary")
+
+  

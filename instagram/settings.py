@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+import cloudinary
 import dj_database_url
 from decouple import config, Csv
 
@@ -31,18 +32,21 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 
-ALLOWED_HOSTS = [
-    '.localhost', 
-    '.herokuapp.com', 
-    '.127.0.0.1',
-]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+#cloudinary configurations
 
+cloudinary.config( 
+  cloud_name='cloud_name', 
+  api_key='api_key', 
+  api_secret='api_secret',
+)
 
 # Application definition
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'cloudinary',
     'posts.apps.PostsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',

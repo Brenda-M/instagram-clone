@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
 class ProfileManager(models.Manager):
@@ -15,7 +16,7 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
-  image = models.ImageField(default='default.jpg', upload_to='profile_imgs/')
+  image = CloudinaryField('image')
   bio = models.CharField(max_length=100, blank=True)
   followers = models.ManyToManyField(User,related_name='is_following', blank=True)
   created_at = models.DateField(auto_now_add=True)
