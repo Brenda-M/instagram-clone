@@ -51,9 +51,9 @@ View the website <a href="https://insta-dummy.herokuapp.com/login/?next=/">Here<
 
 <h3>Create a virtual environment and activate it.</h3>
 
-`python -m venv <name-of-environment>`
-`source venv/bin/activate (Linux)`
-`source venv/Scripts/activate (Windows)`
+`python -m venv <name-of-environment><br/> 
+source venv/bin/activate (Linux)<br/> 
+source venv/Scripts/activate (Windows)`
 
 <h3>Install the requirements.</h3>
 
