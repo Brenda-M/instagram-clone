@@ -14,7 +14,8 @@ This is an attempt rebuild the popular photo gallery website instagram with most
 
 View the website <a href="https://insta-dummy.herokuapp.com/login/?next=/">Here</a>
 
-## User Stories
+## Features
+
 <ul>
   <li>Sign in to the application</li>
   <li>Upload Pictures to the application</li>
@@ -44,32 +45,30 @@ View the website <a href="https://insta-dummy.herokuapp.com/login/?next=/">Here<
 
 ## Setup/Installation Requirements
 
-Clone the repository below.
+<h3>Clone the repository below.</h3>
 
 `git clone https://github.com/Brenda-M/instagram-clone.git`
 
-Navigate to the root folder.
+<h3>Create a virtual environment and activate it.</h3>
 
-Create a virtual environment and activate it.
+`python -m venv <name-of-environment>`
+`source venv/bin/activate (Linux)`
+`source venv/Scripts/activate (Windows)`
 
-`python -m venv <name-of-environment>
-source venv/bin/activate (Linux)
-source venv/Scripts/activate (Windows)`
-
-Install the requirements.
+<h3>Install the requirements.</h3>
 
  `pip install -r requirements.txt.`
 
-Create environmental variable file and add database configurations.
+<h3>Create environmental variable file and add database configurations.</h3>
 
 `touch .env`
 
-Make a migrations.
+<h3>Make a migrations.</h3>
 
-`python manage.py makemigrations
-python manage.py migrate`
+`python manage.py makemigrations`
+`python manage.py migrate`
 
-Run the application.
+<h3>Run the application.</h3>
 
 `python manage.py runserver.`
 
