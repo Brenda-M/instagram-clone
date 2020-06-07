@@ -8,6 +8,7 @@ body{
   background-color: #fafafa;
   font-family: 'Merriweather', serif;
 }
+
 /* navbar styes */
 .navbar .nav-col:first-child img{
   width: 8rem;
@@ -39,10 +40,10 @@ body{
 
 .nav-col .fa-search {
   position: absolute;
-  top: 35%;
-  left: 20%;
+  top: 30%;
+  left: 8%;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .nav-col input {

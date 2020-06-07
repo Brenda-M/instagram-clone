@@ -14,6 +14,9 @@ class Image(models.Model):
   created_at = models.DateField(auto_now_add=True)
   updated_at = models.DateField(auto_now=True)
 
+  def save_image(self):
+    self.save()
+
   def __str__(self):
     return f'{self.user.username} Posted Images'
 

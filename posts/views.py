@@ -22,11 +22,16 @@ class HomeView(LoginRequiredMixin, View):
     users = User.objects.all()
     user = request.user
     is_following_user_ids = [x.user.id for x in user.is_following.all()]
-    qs = Image.objects.filter(user__id__in=is_following_user_ids)
+    qs = Image.objects.filter(
+      Q(user__id__in=is_following_user_ids) |
+      Q(user = user.id)
+      ).order_by('-id') 
+  
     context = {
       'allusers':users, 
       'images':qs,
     }
+    
     return render(request, 'posts/index.html', context )
 
 class ImageDetailView(LoginRequiredMixin,FormMixin, DetailView):

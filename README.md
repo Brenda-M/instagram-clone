@@ -10,6 +10,10 @@ Muthoni Njuguna
 
 This is an attempt rebuild the popular photo gallery website instagram with most of its functionalities using django. 
 
+## Site 
+
+View the website <a href="https://insta-dummy.herokuapp.com/login/?next=/">Here</a>
+
 ## User Stories
 <ul>
   <li>Sign in to the application</li>
@@ -20,26 +24,58 @@ This is an attempt rebuild the popular photo gallery website instagram with most
   <li>Search for other users</li>
 </ul>
 
+## Prerequisites
+  
+<ul>
+  <li>Python</li>
+  <li>Django</li>
+  <li>Virtual environment</li>
+</ul>
+
 ## Technologies and Tools Used
 
-Django
-Git
-HTML
-CSS
+<ul>
+  <li>Django</li>
+  <li>Html</li>
+  <li>Css</li>
+  <li>Git Version Control</li>
+</ul>
+
 
 ## Setup/Installation Requirements
 
-1. Clone this repository by running `git clone https://github.com/Brenda-M/instagram-clone.git` on your terminal.
-2. Navigate to the root folder.
-3. Create a virtual environment using `python -m venv <name-of-environment>`. 
-4. Activate your virtual environment by running `source venv\Scripts\activate` on Windows or `source venv/bin/activate` on Linux systems.
-5. Install the requirements for the project using the following command. `pip install -r requirements.txt.`
-6. Configure a local database in the settings file. 
-7. Run the application using the command `python manage.py runserver.`
+Clone the repository below.
+
+`git clone https://github.com/Brenda-M/instagram-clone.git`
+
+Navigate to the root folder.
+
+Create a virtual environment and activate it.
+
+`python -m venv <name-of-environment>
+source venv/bin/activate (Linux)
+source venv/Scripts/activate (Windows)`
+
+Install the requirements.
+
+ `pip install -r requirements.txt.`
+
+Create environmental variable file and add database configurations.
+
+`touch .env`
+
+Make a migrations.
+
+`python manage.py makemigrations
+python manage.py migrate`
+
+Run the application.
+
+`python manage.py runserver.`
 
 ## Contact Information
 
-In case of any feedback, you can reach me through: -brendanjuguna1@gmail.com
+brendanjuguna1@gmail.com
 
 ## License
 
